@@ -29,6 +29,8 @@ const setStatusClosed = (id) => {
   currentIssue.status = "Closed";
   localStorage.setItem("issues", JSON.stringify(issues));
   fetchIssues();
+  const description = document.getElementById("description");
+  description.innerHTML = `<del>${description.innerText}</del>`;
 };
 
 const deleteIssue = (id) => {
@@ -49,7 +51,7 @@ const fetchIssues = () => {
     issuesList.innerHTML += `<div class="well">
                               <h6>Issue ID: ${id} </h6>
                               <p><span class="label label-info"> ${status} </span></p>
-                              <h3> ${description} </h3>
+                              <h3 id="description"> ${description} </h3>
                               <p><span class="glyphicon glyphicon-time"></span> ${severity}</p>
                               <p><span class="glyphicon glyphicon-user"></span> ${assignedTo}</p>
                               <a href="#" onclick="setStatusClosed(${id})" class="btn btn-warning">Close</a>
